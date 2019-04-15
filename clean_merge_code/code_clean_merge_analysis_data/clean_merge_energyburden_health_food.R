@@ -20,3 +20,5 @@ view(energy_burden_2)
 
 full_en_burden<-rbind(energy_burden_0,energy_burden_1,energy_burden_2)
 view(full_en_burden)
+
+write.csv(full_en_burden,file="energy_burden_tx_cnty_full.csv")
