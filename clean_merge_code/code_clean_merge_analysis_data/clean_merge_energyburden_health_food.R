@@ -21,4 +21,10 @@ view(energy_burden_2)
 full_en_burden<-rbind(energy_burden_0,energy_burden_1,energy_burden_2)
 view(full_en_burden)
 
+#adding binary variable of yes or no energy burdened
+#we'll treat the 0.8 as a threshold for energy burdened
+#we'll have to calculate it 2x. Once using the LMI burden and the 2nd using nonLMI
+full_en_burden$lmi_burdened<-ifelse(full_en_burden$LMI.Energy.Burden>=0.08,1,0)
+full_en_burden$notlmi_burdened<-ifelse(full_en_burden$Non.LMI.Energy.Burden>=0.08,1,0)
+view(full_en_burden)
 write.csv(full_en_burden,file="energy_burden_tx_cnty_full.csv")
