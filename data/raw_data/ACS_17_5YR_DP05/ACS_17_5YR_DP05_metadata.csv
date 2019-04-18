@@ -1,0 +1,71 @@
+GEO.id,Id
+GEO.id2,Id2
+GEO.display-label,Geography
+HC01_VC03,Estimate; SEX AND AGE - Total population
+HC02_VC03,Margin of Error; SEX AND AGE - Total population
+HC03_VC03,Percent; SEX AND AGE - Total population
+HC04_VC03,Percent Margin of Error; SEX AND AGE - Total population
+HC01_VC05,Estimate; SEX AND AGE - Total population - Female
+HC02_VC05,Margin of Error; SEX AND AGE - Total population - Female
+HC03_VC05,Percent; SEX AND AGE - Total population - Female
+HC04_VC05,Percent Margin of Error; SEX AND AGE - Total population - Female
+HC01_VC35,Estimate; SEX AND AGE - 18 years and over
+HC02_VC35,Margin of Error; SEX AND AGE - 18 years and over
+HC03_VC35,Percent; SEX AND AGE - 18 years and over
+HC04_VC35,Percent Margin of Error; SEX AND AGE - 18 years and over
+HC01_VC38,Estimate; SEX AND AGE - 18 years and over - Sex ratio (males per 100 females)
+HC02_VC38,Margin of Error; SEX AND AGE - 18 years and over - Sex ratio (males per 100 females)
+HC03_VC38,Percent; SEX AND AGE - 18 years and over - Sex ratio (males per 100 females)
+HC04_VC38,Percent Margin of Error; SEX AND AGE - 18 years and over - Sex ratio (males per 100 females)
+HC01_VC41,Estimate; SEX AND AGE - 65 years and over
+HC02_VC41,Margin of Error; SEX AND AGE - 65 years and over
+HC03_VC41,Percent; SEX AND AGE - 65 years and over
+HC04_VC41,Percent Margin of Error; SEX AND AGE - 65 years and over
+HC01_VC44,Estimate; SEX AND AGE - 65 years and over - Sex ratio (males per 100 females)
+HC02_VC44,Margin of Error; SEX AND AGE - 65 years and over - Sex ratio (males per 100 females)
+HC03_VC44,Percent; SEX AND AGE - 65 years and over - Sex ratio (males per 100 females)
+HC04_VC44,Percent Margin of Error; SEX AND AGE - 65 years and over - Sex ratio (males per 100 females)
+HC01_VC53,Estimate; RACE - One race
+HC02_VC53,Margin of Error; RACE - One race
+HC03_VC53,Percent; RACE - One race
+HC04_VC53,Percent Margin of Error; RACE - One race
+HC01_VC92,Estimate; HISPANIC OR LATINO AND RACE - Total population
+HC02_VC92,Margin of Error; HISPANIC OR LATINO AND RACE - Total population
+HC03_VC92,Percent; HISPANIC OR LATINO AND RACE - Total population
+HC04_VC92,Percent Margin of Error; HISPANIC OR LATINO AND RACE - Total population
+HC01_VC93,Estimate; HISPANIC OR LATINO AND RACE - Total population - Hispanic or Latino (of any race)
+HC02_VC93,Margin of Error; HISPANIC OR LATINO AND RACE - Total population - Hispanic or Latino (of any race)
+HC03_VC93,Percent; HISPANIC OR LATINO AND RACE - Total population - Hispanic or Latino (of any race)
+HC04_VC93,Percent Margin of Error; HISPANIC OR LATINO AND RACE - Total population - Hispanic or Latino (of any race)
+HC01_VC94,Estimate; HISPANIC OR LATINO AND RACE - Total population - Hispanic or Latino (of any race) - Mexican
+HC02_VC94,Margin of Error; HISPANIC OR LATINO AND RACE - Total population - Hispanic or Latino (of any race) - Mexican
+HC03_VC94,Percent; HISPANIC OR LATINO AND RACE - Total population - Hispanic or Latino (of any race) - Mexican
+HC04_VC94,Percent Margin of Error; HISPANIC OR LATINO AND RACE - Total population - Hispanic or Latino (of any race) - Mexican
+HC01_VC98,Estimate; HISPANIC OR LATINO AND RACE - Total population - Not Hispanic or Latino
+HC02_VC98,Margin of Error; HISPANIC OR LATINO AND RACE - Total population - Not Hispanic or Latino
+HC03_VC98,Percent; HISPANIC OR LATINO AND RACE - Total population - Not Hispanic or Latino
+HC04_VC98,Percent Margin of Error; HISPANIC OR LATINO AND RACE - Total population - Not Hispanic or Latino
+HC01_VC99,Estimate; HISPANIC OR LATINO AND RACE - Total population - Not Hispanic or Latino - White alone
+HC02_VC99,Margin of Error; HISPANIC OR LATINO AND RACE - Total population - Not Hispanic or Latino - White alone
+HC03_VC99,Percent; HISPANIC OR LATINO AND RACE - Total population - Not Hispanic or Latino - White alone
+HC04_VC99,Percent Margin of Error; HISPANIC OR LATINO AND RACE - Total population - Not Hispanic or Latino - White alone
+HC01_VC100,Estimate; HISPANIC OR LATINO AND RACE - Total population - Not Hispanic or Latino - Black or African American alone
+HC02_VC100,Margin of Error; HISPANIC OR LATINO AND RACE - Total population - Not Hispanic or Latino - Black or African American alone
+HC03_VC100,Percent; HISPANIC OR LATINO AND RACE - Total population - Not Hispanic or Latino - Black or African American alone
+HC04_VC100,Percent Margin of Error; HISPANIC OR LATINO AND RACE - Total population - Not Hispanic or Latino - Black or African American alone
+HC01_VC101,Estimate; HISPANIC OR LATINO AND RACE - Total population - Not Hispanic or Latino - American Indian and Alaska Native alone
+HC02_VC101,Margin of Error; HISPANIC OR LATINO AND RACE - Total population - Not Hispanic or Latino - American Indian and Alaska Native alone
+HC03_VC101,Percent; HISPANIC OR LATINO AND RACE - Total population - Not Hispanic or Latino - American Indian and Alaska Native alone
+HC04_VC101,Percent Margin of Error; HISPANIC OR LATINO AND RACE - Total population - Not Hispanic or Latino - American Indian and Alaska Native alone
+HC01_VC102,Estimate; HISPANIC OR LATINO AND RACE - Total population - Not Hispanic or Latino - Asian alone
+HC02_VC102,Margin of Error; HISPANIC OR LATINO AND RACE - Total population - Not Hispanic or Latino - Asian alone
+HC03_VC102,Percent; HISPANIC OR LATINO AND RACE - Total population - Not Hispanic or Latino - Asian alone
+HC04_VC102,Percent Margin of Error; HISPANIC OR LATINO AND RACE - Total population - Not Hispanic or Latino - Asian alone
+HC01_VC103,Estimate; HISPANIC OR LATINO AND RACE - Total population - Not Hispanic or Latino - Native Hawaiian and Other Pacific Islander alone
+HC02_VC103,Margin of Error; HISPANIC OR LATINO AND RACE - Total population - Not Hispanic or Latino - Native Hawaiian and Other Pacific Islander alone
+HC03_VC103,Percent; HISPANIC OR LATINO AND RACE - Total population - Not Hispanic or Latino - Native Hawaiian and Other Pacific Islander alone
+HC04_VC103,Percent Margin of Error; HISPANIC OR LATINO AND RACE - Total population - Not Hispanic or Latino - Native Hawaiian and Other Pacific Islander alone
+HC01_VC104,Estimate; HISPANIC OR LATINO AND RACE - Total population - Not Hispanic or Latino - Some other race alone
+HC02_VC104,Margin of Error; HISPANIC OR LATINO AND RACE - Total population - Not Hispanic or Latino - Some other race alone
+HC03_VC104,Percent; HISPANIC OR LATINO AND RACE - Total population - Not Hispanic or Latino - Some other race alone
+HC04_VC104,Percent Margin of Error; HISPANIC OR LATINO AND RACE - Total population - Not Hispanic or Latino - Some other race alone

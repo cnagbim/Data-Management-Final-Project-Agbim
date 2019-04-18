@@ -1,0 +1,1 @@
+https://maps-data.nrel.gov/geoserver/nrel/ows?outputFormat=SHAPE-ZIP&propertyName=name%2Cstate_name%2Cstate_fips%2Ccnty_fips%2Carea%2Cpop2000%2Cpop2001%2Cgeom4326&request=GetFeature&service=WFS&typeName=nrel%3Aus_counties&version=1.0.0
