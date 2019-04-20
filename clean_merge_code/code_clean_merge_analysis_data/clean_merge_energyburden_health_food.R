@@ -1,3 +1,5 @@
+#The purpose of this script is to merge different datasets into 1 dataset to be used
+
 #The energy burden data from NREL was seperated into three files (see the readme in energy burden folder)
 #Therefore we need to merge the files vertically
 #Load packages tidyverse
@@ -27,4 +29,7 @@ view(full_en_burden)
 full_en_burden$lmi_burdened<-ifelse(full_en_burden$LMI.Energy.Burden>=0.08,1,0)
 full_en_burden$notlmi_burdened<-ifelse(full_en_burden$Non.LMI.Energy.Burden>=0.08,1,0)
 view(full_en_burden)
-write.csv(full_en_burden,file="energy_burden_tx_cnty_full.csv")
+#Download the file. Make sure to move it into the data>raw_data>energy_nrel folder
+write.csv(full_en_burden,file="energy_burden_tx_full.csv")
+
+
