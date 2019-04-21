@@ -44,7 +44,60 @@ pov_income_saipe<-read.csv("~/Github/Data-Management-Final-Project-Agbim/data/ra
 #The median income for the state of Texas is $59,195 in 2017
 #source: US Census Bureau Small Area Income Poverty Estimate
 pov_income_saipe$pcnt_income_saipe<-pov_income_saipe$Median.Household.Income.in.Dollars*(100/59195)
+#Rename ugly columns
+pov_income_headers<-c("fips","cnty","pcnt_pov_saipe","income_saipe","pcnt_income_saipe")
+names(pov_income_saipe)<-pov_income_headers
+view(pov_income_saipe)
 
 #Import race statistics from US Census Bureau(ucb)
-race_ucb<-read.csv("~/Github/Data-Management-Final-Project-Agbim/data/raw_data/race_ACS_17_5YR_/", na.strings = NA,header=TRUE)
+race_ucb<-read.csv("~/Github/Data-Management-Final-Project-Agbim/data/raw_data/race_age_census/census_race_TX_full.csv", na.strings = NA,header=TRUE)
 
+#rename the really ugly columns
+race_ucb_header<-c("Id_ucb","fip_ucb","cnty_ucb","pcnt_hisp_ucb","pcnt_blk_ucb")
+names(race_ucb)<-race_ucb_header
+
+view(race_ucb)
+
+#Import statistics from county health ranking (chr)
+chr<-read.csv("~/Github/Data-Management-Final-Project-Agbim/data/raw_data/county_health_ranking/county_health_tx_full.csv", na.strings= NA, header=TRUE)
+
+#Change income to be percent of Texas income like before
+#Recall tx median income 59195 in 2017
+chr$pcnt_income_chr<-chr$Household.Income*(100/59195)
+
+#Rename ugly variables in chr
+chr_header<-c("fip","state","cnty","pcnt_food_insec_chr","pcnt_lw_access_chr","pcnt_uninsured_chr","income_chr","pcnt_own_chr","pcnt_sr_chr","pcnt_blk_chr","pcnt_hisp_chr","pcnt_rural_chr","pcnt_unemp_chr","food_rank_chr","pcnt_obese_chr","pcnt_income_chr")
+names(chr)<-chr_header
+
+#Load bureau labor statistics
+bls<-read.csv("~/Github/Data-Management-Final-Project-Agbim/data/raw_data/unemployment_bureau_labor_stats/unemp_bls_tx_jun2017_full.csv",na.strings = NA,header = TRUE)
+view(bls)
+
+#rename columns
+bls_header<-c("fips","cnty","pcnt_unemp_bls")
+names(bls)<-bls_header
+
+#load age data
+age_ucb<-read.csv("~/Github/Data-Management-Final-Project-Agbim/data/raw_data/race_age_census/census_age_tx_full.csv",na.strings=NA,header=TRUE)
+
+view(age_ucb)
+
+#rename headers
+age_header<-c("fip","cnty","total_sr","total_pop","pcnt_sr_ucb")
+names(age_ucb)<-age_header
+
+#load ownership data from census bureau
+own_ucb<-read.csv("~/Github/Data-Management-Final-Project-Agbim/data/raw_data/ownership_census/census_pcnt_own_full.csv", na.strings =NA, header=TRUE)
+#Rename headers
+own_ucb_header<-c("Id_ucb","fip_ucb","cnty_ucb","total_housing","total_own","pcnt_own_ucb")
+names(own_ucb)<-own_ucb_header
+view(own_ucb)
+#change percent to 100 scale instead of decimal
+own_ucb$pcnt_own_ucb<-own_ucb$pcnt_own_ucb*100
+
+#load usda data set
+usda<-read.csv("~/Github/Data-Management-Final-Project-Agbim/data/raw_data/USDA_foodatlas/usda_TX_full.csv", na.strings = NA, header=TRUE)
+view(usda)
+#rename headers
+usda_header<-c("fip","cnty","pcnt_obese_usda","pcnt_pov_usda","pcnt_lw_access_usda")
+names(usda)<-usda_header
