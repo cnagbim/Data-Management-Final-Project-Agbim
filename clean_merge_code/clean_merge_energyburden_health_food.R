@@ -120,23 +120,20 @@ analysis_data<-data.frame("fip"=full_en_burden$County.GEOID,
                           "pcnt_obese_usda"=usda$pcnt_obese_usda,
                           "pcnt_food_insec_chr"=chr$pcnt_food_insec_chr,
                           "pcnt_uninsured_chr"=chr$pcnt_uninsured_chr)
+write.csv(x=analysis_data,file="analysis_data_v1.csv")
 
-#Need to do correlation matix to check
-#only want to check correlation in column 3 to 15
-cor(analysis_data[3:15])
-
-
-#linear regression using analysis data
-lm_analysis<-lm(formula=lmi_burdenx100~.-fip-cnty,data=analysis_data)
-summary(lm_analysis)
-
-#ugly output. instead use rmarkdown
-#first load package memisc
-library(memisc)
-
-#then create a mtable of analysis summary
-analysis_tbl<-mtable('Analysis Summary'=lm_analysis,
-                    summary.stats = c('R-squared','F-statistic','p-value')) #failed
-library(pander)
-
-pander(analysis_tbl) #failed
+validation_data<-data.frame("fip"=full_en_burden$County.GEOID,
+                            "cnty"=full_en_burden$County.Name,
+                            "lmi_burdenx100"=full_en_burden$lMI_burdenx100,
+                            "pcnt_hisp_chr"=chr$pcnt_hisp_chr,
+                            "pcnt_blk_chr"=chr$pcnt_blk_chr,
+                            "pcnt_rural_chr"=chr$pcnt_rural_chr,
+                            "pcnt_sr_chr"=chr$pcnt_sr_chr,
+                            "pcnt_unemp_chr"=chr$pcnt_unemp_chr,
+                            "pcnt_pov_saipe"=pov_income_saipe$pcnt_pov_saipe,
+                            "pcnt_income_chr"=chr$pcnt_income_chr,
+                            "pcnt_own_chr"=chr$pcnt_own_chr,
+                            "pcnt_lw_access_chr"=chr$pcnt_obese_chr,
+                            "pcnt_obese_chr"=chr$pcnt_obese_chr,
+                            "food_rank_chr"=chr$food_rank_chr,
+                            "pcnt_uninsured_chr"=chr$pcnt_uninsured_chr)
