@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata xml:lang="en"><Esri><CreaDate>20190424</CreaDate><CreaTime>12335500</CreaTime><ArcGISFormat>1.0</ArcGISFormat><SyncOnce>TRUE</SyncOnce><DataProperties><lineage><Process ToolSource="c:\program files (x86)\arcgis\desktop10.4\ArcToolbox\Toolboxes\Data Management Tools.tbx\CalculateField" Date="20190424" Time="123355">CalculateField us_counties fips_all "1000*[state_fips]+ [cnty_fips]" VB #</Process></lineage></DataProperties></Esri></metadata>
