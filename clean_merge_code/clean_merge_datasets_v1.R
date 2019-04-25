@@ -137,3 +137,4 @@ validation_data<-data.frame("fip"=full_en_burden$County.GEOID,
                             "pcnt_obese_chr"=chr$pcnt_obese_chr,
                             "food_rank_chr"=chr$food_rank_chr,
                             "pcnt_uninsured_chr"=chr$pcnt_uninsured_chr)
+write.csv(validation_data, "validation_data_v1.csv")
