@@ -120,7 +120,6 @@ analysis_data<-data.frame("fip"=full_en_burden$County.GEOID,
                           "pcnt_obese_usda"=usda$pcnt_obese_usda,
                           "pcnt_food_insec_chr"=chr$pcnt_food_insec_chr,
                           "pcnt_uninsured_chr"=chr$pcnt_uninsured_chr)
-write.csv(x=analysis_data,file="analysis_data_v1.csv")
 
 validation_data<-data.frame("fip"=full_en_burden$County.GEOID,
                             "cnty"=full_en_burden$County.Name,
@@ -137,4 +136,40 @@ validation_data<-data.frame("fip"=full_en_burden$County.GEOID,
                             "pcnt_obese_chr"=chr$pcnt_obese_chr,
                             "food_rank_chr"=chr$food_rank_chr,
                             "pcnt_uninsured_chr"=chr$pcnt_uninsured_chr)
-write.csv(validation_data, "validation_data_v1.csv")
+
+
+#checking correlation
+
+
+#food insecure and food rank
+cor(analysis_data$pcnt_food_insec_chr,validation_data$food_rank_chr)
+
+#result says "NA" so lets check for datatype
+typeof(analysis_data$pcnt_food_insec_chr)
+
+typeof(validation_data$food_rank_chr)
+#they're different types
+#check all variables in both dataframes
+str(validation_data)
+str(analysis_data)
+
+#in analysis_data convert "pcnt_food_insec_chr" and "pcnt_uninsured_chr" to num
+analysis_data$pcnt_food_insec_chr<-as.numeric(analysis_data$pcnt_food_insec_chr)
+analysis_data$pcnt_uninsured_chr<-as.numeric(analysis_data$pcnt_uninsured_chr)
+
+#in validation_data convert "own_chr", "lw_access", "pcnt_obese_chr", and "uninsured_chr"
+validation_data$pcnt_uninsured_chr<-as.numeric(validation_data$pcnt_uninsured_chr)
+validation_data$pcnt_own_chr<-as.numeric(validation_data$pcnt_own_chr)
+validation_data$pcnt_lw_access_chr<-as.numeric(validation_data$pcnt_lw_access_chr)
+validation_data$pcnt_obese_chr<-as.numeric(validation_data$pcnt_obese_chr)
+
+#write the functions
+write.csv(x=analysis_data,file="analysis_data_v1.csv")
+write.csv(x=validation_data, "validation_data_v1.csv")
+
+#NOW Go BACK to LOOKING AT correlation
+#pcnt hispanic. check correlation for variable in both datasets
+cor.test(validation_data$pcnt_hisp_chr,analysis_data$pcnt_hisp_ucb)
+#food_insec and food_rank. There are incommplete observations so "use" to specify
+cor(analysis_data$pcnt_food_insec_chr,validation_data$food_rank_chr, use="complete.obs")
+cor.test(analysis_data$pcnt_food_insec_chr,validation_data$food_rank_chr, use="complete.obs")
