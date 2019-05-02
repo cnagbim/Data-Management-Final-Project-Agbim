@@ -173,3 +173,33 @@ cor.test(validation_data$pcnt_hisp_chr,analysis_data$pcnt_hisp_ucb)
 #food_insec and food_rank. There are incommplete observations so "use" to specify
 cor(analysis_data$pcnt_food_insec_chr,validation_data$food_rank_chr, use="complete.obs")
 cor.test(analysis_data$pcnt_food_insec_chr,validation_data$food_rank_chr, use="complete.obs")
+
+#pcnt blk. check correlation for variable in both datasets
+cor.test(analysis_data$pcnt_blk_ucb,validation_data$pcnt_blk_chr)
+
+#pcnt rural. check correlation for variable in both datasets
+cor.test(analysis_data$pcnt_rural_chr,validation_data$pcnt_rural_chr)
+
+#pcnt sr.check correlation for variable in both datasets
+cor.test(analysis_data$pcnt_sr_ucb,validation_data$pcnt_sr_chr)
+
+#unemployment rate.check correlation for variable in both datasets
+cor.test(analysis_data$pcnt_unemp_bls,validation_data$pcnt_unemp_chr)
+
+# pcnt pov check correlation for variable in both datasets
+cor.test(analysis_data$pcnt_pov_usda,validation_data$pcnt_pov_saipe)
+
+#ocnt income. check correlation for variable in both datasets
+cor.test(analysis_data$pcnt_income_saipe,validation_data$pcnt_income_chr)
+
+#ocnt...check correlation for variable in both datasets
+cor.test(analysis_data$pcnt_own_ucb,validation_data$pcnt_own_chr)
+
+#lw access check correlation for variable in both datasets
+cor.test(analysis_data$pcnt_lw_access_usda,validation_data$pcnt_lw_access_chr)
+
+#obese check correlation for variable in both datasets
+cor.test(analysis_data$pcnt_obese_usda,validation_data$pcnt_obese_chr)
+
+#check correlation for variable in both datasets
+cor.test(analysis_data$pcnt_uninsured_chr,validation_data$pcnt_uninsured_chr)
