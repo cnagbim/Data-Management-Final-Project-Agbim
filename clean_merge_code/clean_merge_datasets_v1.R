@@ -102,6 +102,21 @@ view(usda)
 usda_header<-c("fip","cnty","pcnt_obese_usda","pcnt_pov_usda","pcnt_lw_access_usda")
 names(usda)<-usda_header
 
+#add a control variable: housing age
+house_hud<-read.csv("~/Github/Data-Management-Final-Project-Agbim/data/raw_data/year_household_built_HUD/ACS_5YR_Housing_Estimate_Data_by_County.csv",na.strings = "")
+#its messy so we'll need to clean it up using tidy verse
+library(tidyverse)
+house_hud<-filter(house_age_hud,house_age_hud$STATE=="48")
+
+#year built is the median year that households were built in that county
+house_age_hud<-data.frame("fip"=house_hud$GEOID,
+                          "state"=house_hud$STATE_NAME,
+                          "cnty"=house_hud$NAME,
+                          "yr_built"=house_hud$B25037EST3)
+
+house_age_hud$str_age<-2019-house_age_hud$yr_built
+
+#FOLLOW UP HERE AND ADD HOUSE STRUC AGE TO BOTH DATA SETS
 #All of the spreadsheets have now been loaded
 #Create analysis dataframe
 
@@ -139,8 +154,6 @@ validation_data<-data.frame("fip"=full_en_burden$County.GEOID,
 
 
 #checking correlation
-
-
 #food insecure and food rank
 cor(analysis_data$pcnt_food_insec_chr,validation_data$food_rank_chr)
 

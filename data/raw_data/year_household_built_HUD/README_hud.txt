@@ -18,6 +18,6 @@ and associated datasets visit: https://www.census.gov/programs-surveys/acs
 Data Dictionary: DD_ACS 5-Year Housing Estimate Data by County  Date of Coverage: 2011-2015 
 Data Updated: Biennially
 
-Use variable "B25037" to get median year structure was built per county
+Use variable "B25037" labeled "B25037EST3" in the spreadsheet to get median year structure was built per county
 
 Data Accesssed: 5/1/2019
