@@ -134,7 +134,8 @@ analysis_data<-data.frame("fip"=full_en_burden$County.GEOID,
                           "pcnt_lw_access_usda"=usda$pcnt_lw_access_usda,
                           "pcnt_obese_usda"=usda$pcnt_obese_usda,
                           "pcnt_food_insec_chr"=chr$pcnt_food_insec_chr,
-                          "pcnt_uninsured_chr"=chr$pcnt_uninsured_chr)
+                          "pcnt_uninsured_chr"=chr$pcnt_uninsured_chr,
+                          "house_str_age"=house_age_hud$str_age)
 
 validation_data<-data.frame("fip"=full_en_burden$County.GEOID,
                             "cnty"=full_en_burden$County.Name,
@@ -150,7 +151,8 @@ validation_data<-data.frame("fip"=full_en_burden$County.GEOID,
                             "pcnt_lw_access_chr"=chr$pcnt_lw_access_chr,
                             "pcnt_obese_chr"=chr$pcnt_obese_chr,
                             "food_rank_chr"=chr$food_rank_chr,
-                            "pcnt_uninsured_chr"=chr$pcnt_uninsured_chr)
+                            "pcnt_uninsured_chr"=chr$pcnt_uninsured_chr,
+                            "house_str_age"=house_age_hud$str_age)
 
 
 #checking correlation
@@ -178,7 +180,7 @@ validation_data$pcnt_obese_chr<-as.numeric(validation_data$pcnt_obese_chr)
 
 #write the functions
 write.csv(x=analysis_data,file="analysis_data_v1.csv")
-write.csv(x=validation_data, "validation_data_v1.csv")
+write.csv(x=validation_data,file="validation_data_v1.csv")
 
 #NOW Go BACK to LOOKING AT correlation
 #pcnt hispanic. check correlation for variable in both datasets
@@ -216,3 +218,22 @@ cor.test(analysis_data$pcnt_obese_usda,validation_data$pcnt_obese_chr)
 
 #check correlation for variable in both datasets
 cor.test(analysis_data$pcnt_uninsured_chr,validation_data$pcnt_uninsured_chr)
+
+
+#Add border county dataset
+#Then add a categorical variable border_cnty
+brdr_cnty<-read.csv("~/Github/Data-Management-Final-Project-Agbim/data/raw_data/border_county_dhs/border_county_tx.csv",header = TRUE)
+library(tidyverse)
+analysis_data$brdr_cnty<-ifelse(analysis_data$cnty %in% brdr_cnty$brdr_cnty_name, 1,0)
+
+view(analysis_data)
+
+#ensure border is being understood as a categorical variable
+
+analysis_data$brdr_cnty<-as.factor(analysis_data$brdr_cnty)
+levels(analysis_data$brdr_cnty)
+#summarize to see how many variable were categorized as border or non border
+#There should be 32 variables categorized as border
+summary(analysis_data$brdr_cnty)
+
+write.csv(x=analysis_data,file = "analysis_data_dum_v1.csv")
