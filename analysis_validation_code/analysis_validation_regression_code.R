@@ -41,30 +41,53 @@ vif(lm_analysis2)
 summary(lm_analysis2)
 
 #read in validation data
-validation_data<-read.csv("~/Github/Data-Management-Final-Project-Agbim/data/clean_data/validation_data_v1.csv",na.strings ="NA",header = TRUE )
+validation_data1<-read.csv("~/Github/Data-Management-Final-Project-Agbim/data/clean_data/validation_data_v1.csv",na.strings ="NA",header = TRUE )
 
-lm_validation<-lm(formula=validation_data$lmi_burdenx100~.-X-fip-cnty,data=validation_data)
+lm_validation1<-lm(formula=validation_data$lmi_burdenx100~.-X-fip-cnty,data=validation_data1)
 
-summary(lm_validation)
-vif(lm_validation)
+summary(lm_validation1)
+vif(lm_validation1)
 
 #if there's an error in output
-str(validation_data)
+str(validation_data1)
 #check the datatypes are different
 #change own,lw_access,obese,and uninsured to num
 
-validation_data$pcnt_own_chr<-as.numeric(validation_data$pcnt_own_chr)
-validation_data$pcnt_lw_access_chr<-as.numeric(validation_data$pcnt_lw_access_chr)
-validation_data$pcnt_obese_chr<-as.numeric(validation_data$pcnt_obese_chr)
-validation_data$pcnt_uninsured_chr<-as.numeric(validation_data$pcnt_uninsured_chr)
+validation_data1$pcnt_own_chr<-as.numeric(validation_data1$pcnt_own_chr)
+validation_data1$pcnt_lw_access_chr<-as.numeric(validation_data1$pcnt_lw_access_chr)
+validation_data1$pcnt_obese_chr<-as.numeric(validation_data1$pcnt_obese_chr)
+validation_data1$pcnt_uninsured_chr<-as.numeric(validation_data1$pcnt_uninsured_chr)
 
-str(validation_data)
+str(validation_data1)
 #run again without pcnt_hisp
 
-lm_validation2<-lm(formula=validation_data$lmi_burdenx100~.-pcnt_hisp_chr-fip-cnty,data=validation_data)
+lm_validation2<-lm(formula=validation_data$lmi_burdenx100~.-pcnt_hisp_chr-fip-cnty,data=validation_data1)
 
 summary(lm_validation2)
 vif(lm_validation2)
-cor(validation_data$pcnt_obese_chr,validation_data$pcnt_pov_saipe)
+cor(validation_data1$pcnt_obese_chr,validation_data1$pcnt_pov_saipe)
 
-cor(validation_data$pcnt_obese_chr,validation_data$pcnt_lw_access_chr)
+cor(validation_data1$pcnt_obese_chr,validation_data1$pcnt_lw_access_chr)
+
+#HERE STARTS THE ADDITION OF THE DUMMY VAR "BRDR_CNTY"
+
+analysis_data_dum1<-read.csv("~/Github/Data-Management-Final-Project-Agbim/data/clean_data/analysis_data_dum_v1.csv",na.strings = "NA",header=TRUE)
+view(analysis_data_dum1)
+str(analysis_data_dum1)
+#change brd_cnty to a categorical variable again
+analysis_data_dum1$lmi_burdenx100<-as.factor(analysis_data_dum1$brdr_cnty)
+#run linear regression
+lm_analysis_dum1<-lm(formula=validation_data$lmi_burdenx100~.-X.1-X-fip-cnty,
+                      data=analysis_data_dum1)
+summary(lm_analysis_dum1)
+#Check VIF 
+vif(lm_analysis_dum1)
+#Remove pcnt_hisp to create a new model
+lm_analysis_dum2<-lm(formula=validation_data$lmi_burdenx100~.-X.1-X-fip-cnty-pcnt_hisp_ucb,
+                     data=analysis_data_dum1)
+summary(lm_analysis_dum2)
+
+#Check VIF for analysis_dum2
+vif(lm_analysis_dum2)
+
+#to check robustness website: https://www.statmethods.net/stats/rdiagnostics.html

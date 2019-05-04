@@ -237,3 +237,15 @@ levels(analysis_data$brdr_cnty)
 summary(analysis_data$brdr_cnty)
 
 write.csv(x=analysis_data,file = "analysis_data_dum_v1.csv")
+
+#now add brdr cnty variable to validation dataset
+validation_data$brdr_cnty<-ifelse(validation_data$cnty %in% brdr_cnty$brdr_cnty_name, 1,0)
+
+view(validation_data)
+#check if brdr cnty is a categorical variables. "NULL" response means it's not
+levels(validation_data$brdr_cnty)
+#change to a factor aka a categorical variable
+validation_data$brdr_cnty<-as.factor(validation_data$brdr_cnty)
+summary(validation_data$brdr_cnty)
+
+write.csv(x=validation_data,file = "valid_data_dum_v1.csv")
