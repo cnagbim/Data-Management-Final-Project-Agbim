@@ -77,11 +77,33 @@ str(analysis_data_dum1)
 #change brd_cnty to a categorical variable again
 analysis_data_dum1$lmi_burdenx100<-as.factor(analysis_data_dum1$brdr_cnty)
 #run linear regression
-lm_analysis_dum1<-lm(formula=validation_data$lmi_burdenx100~.-X.1-X-fip-cnty,
+lm_analysis_dum1<-lm(formula=validation_data$lmi_burdenx100~.-X-X.1-fip-cnty,
                       data=analysis_data_dum1)
 summary(lm_analysis_dum1)
-#Check VIF 
+
+#DO RUSTNESS CHECKS
+#to check robustness website: https://www.statmethods.net/stats/rdiagnostics.html
+#library(MASS)
+#Check VIF and remove values with higher than score 10
 vif(lm_analysis_dum1)
+#check for linearity
+?crPlots
+?ceresPlots
+crPlots(lm_analysis_dum1)
+ceresPlots(lm_analysis_dum1) #fail
+#check fo normality of residuals
+qqPlot(lm_analysis_dum1,main="QQ Plot")
+
+?studres
+#check for heteroscedasticity(bad)
+?ncvTest
+ncvTest(lm_analysis_dum1)
+
+#Checking Outliers
+leveragePlots(lm_analysis_dum1) #high leverage points
+
+outlierTest(lm_analysis_dum1)#p-value for extreme obs
+
 #Remove pcnt_hisp to create a new model
 lm_analysis_dum2<-lm(formula=validation_data$lmi_burdenx100~.-X.1-X-fip-cnty-pcnt_hisp_ucb,
                      data=analysis_data_dum1)
@@ -90,4 +112,3 @@ summary(lm_analysis_dum2)
 #Check VIF for analysis_dum2
 vif(lm_analysis_dum2)
 
-#to check robustness website: https://www.statmethods.net/stats/rdiagnostics.html
