@@ -36,7 +36,26 @@ write.csv(full_en_burden,file="energy_burden_tx_full.csv")
 #The scale will be important for analysis later on 
 #We're only interested in lmi burden
 full_en_burden$lMI_burdenx100<-full_en_burden$LMI.Energy.Burden*100
+full_en_burden$nonlmi_burdenx100<-full_en_burden$Non.LMI.Energy.Burden*100
 
+#COMEBACK FOLLOW UP AND MAKE 2 HISTOGRAMS
+#make histogram of lmi burden
+#first load ggplot
+library(ggplot2)
+qplot(full_en_burden$lMI_burdenx100,
+      geom = "histogram",
+      binwidth=3,
+      fill=I("red"),
+      main="Texas Low-Moderate Income Energy Burden",
+      xlab="Energy Burden (%of Income Spent)",
+      ylab="Frequency")
+qplot(full_en_burden$nonlmi_burdenx100,
+      geom = "histogram",
+      binwidth=1,
+      fill=I("blue"),
+      main="Texas Non Low-Moderate Income Energy Burden",
+      xlab="Energy Burden (%of Income Spent)",
+      ylab="Frequency")
 #Import poverty and income spreadsheet from SAIPE
 pov_income_saipe<-read.csv("~/Github/Data-Management-Final-Project-Agbim/data/raw_data/poverty_income_saipe/census_pov_income_tx_full.csv",na.strings = NA,header=TRUE)
 

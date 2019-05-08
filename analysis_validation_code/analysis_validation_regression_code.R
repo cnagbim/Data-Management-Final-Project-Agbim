@@ -1,6 +1,6 @@
 analysis_data1<-read.csv("~/Github/Data-Management-Final-Project-Agbim/data/clean_data/analysis_data_v1.csv",na.strings ="NA",header = TRUE )
 
-#make histogram
+#make histogram of lmi burden
 #first load ggplot
 library(ggplot2)
 qplot(analysis_data1$lmi_burdenx100,
