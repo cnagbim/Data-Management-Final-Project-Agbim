@@ -110,5 +110,23 @@ lm_analysis_dum2<-lm(formula=validation_data$lmi_burdenx100~.-X.1-X-fip-cnty-pcn
 summary(lm_analysis_dum2)
 
 #Check VIF for analysis_dum2
+library(car)
 vif(lm_analysis_dum2)
 
+#check for linearity
+?crPlots
+?ceresPlots
+crPlots(lm_analysis_dum2)
+ceresPlots(lm_analysis_dum2) #fail
+#check fo normality of residuals
+qqPlot(lm_analysis_dum2,main="QQ Plot")
+
+?studres
+#check for heteroscedasticity(bad)
+?ncvTest
+ncvTest(lm_analysis_dum2)
+
+#Checking Outliers
+leveragePlots(lm_analysis_dum2) #high leverage points
+
+outlierTest(lm_analysis_dum2)#p-value for extreme obs
