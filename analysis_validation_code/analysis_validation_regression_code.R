@@ -17,7 +17,7 @@ cor(analysis_data1[4:15])#pairs
 pairs(analysis_data1[4:15])#pairs hard to read
 cor(analysis_data1[sapply(analysis_data1,is.numeric)],use = "complete.obs")#successful
 #linear regression using analysis data
-lm_analysis1<-lm(formula=lmi_burdenx100~.-X-fip-cnty,data=analysis_data1)
+lm_analysis1<-lm(formula=lmi_burdenx100~.-X-fip-cnty-pcnt_income_saipe,data=analysis_data1)
 #Checking for variance inflation factor 1-4 means low multicollinearity. 5 and higher are a cause for concern
 library(car)
 vif(lm_analysis1)
@@ -36,14 +36,14 @@ library(pander) # failed
 pander(analysis_tbl) #failed
 #run another lm w analysis data. leave out pcnt_hisp, b/c it had the highest VIF in th first model
 
-lm_analysis2<-lm(formula=lmi_burdenx100~.-X-fip-cnty-pcnt_hisp_ucb,data = analysis_data1)
+lm_analysis2<-lm(formula=lmi_burdenx100~.-X-fip-cnty-pcnt_hisp_ucb-pcnt_income_saipe,data = analysis_data1)
 vif(lm_analysis2)
 summary(lm_analysis2)
 
 #read in validation data
 validation_data1<-read.csv("~/Github/Data-Management-Final-Project-Agbim/data/clean_data/validation_data_v1.csv",na.strings ="NA",header = TRUE )
 
-lm_validation1<-lm(formula=validation_data$lmi_burdenx100~.-X-fip-cnty,data=validation_data1)
+lm_validation1<-lm(formula=validation_data$lmi_burdenx100~.-X-fip-cnty-pcnt_income_chr,data=validation_data1)
 
 summary(lm_validation1)
 vif(lm_validation1)
@@ -61,7 +61,7 @@ validation_data1$pcnt_uninsured_chr<-as.numeric(validation_data1$pcnt_uninsured_
 str(validation_data1)
 #run again without pcnt_hisp
 
-lm_validation2<-lm(formula=validation_data$lmi_burdenx100~.-pcnt_hisp_chr-fip-cnty,data=validation_data1)
+lm_validation2<-lm(formula=validation_data$lmi_burdenx100~.-pcnt_income_chr-pcnt_hisp_chr-fip-cnty,data=validation_data1)
 
 summary(lm_validation2)
 vif(lm_validation2)
@@ -77,7 +77,7 @@ str(analysis_data_dum1)
 #change brd_cnty to a categorical variable again
 analysis_data_dum1$lmi_burdenx100<-as.factor(analysis_data_dum1$brdr_cnty)
 #run linear regression
-lm_analysis_dum1<-lm(formula=validation_data$lmi_burdenx100~.-X-X.1-fip-cnty,
+lm_analysis_dum1<-lm(formula=validation_data$lmi_burdenx100~.-X-fip-cnty-pcnt_income_saipe,
                       data=analysis_data_dum1)
 summary(lm_analysis_dum1)
 
@@ -105,7 +105,7 @@ leveragePlots(lm_analysis_dum1) #high leverage points
 outlierTest(lm_analysis_dum1)#p-value for extreme obs
 
 #Remove pcnt_hisp to create a new model
-lm_analysis_dum2<-lm(formula=validation_data$lmi_burdenx100~.-X.1-X-fip-cnty-pcnt_hisp_ucb,
+lm_analysis_dum2<-lm(formula=validation_data$lmi_burdenx100~.-X-fip-cnty-pcnt_hisp_ucb-pcnt_income_saipe,
                      data=analysis_data_dum1)
 summary(lm_analysis_dum2)
 
@@ -130,3 +130,34 @@ ncvTest(lm_analysis_dum2)
 leveragePlots(lm_analysis_dum2) #high leverage points
 
 outlierTest(lm_analysis_dum2)#p-value for extreme obs
+
+#HERE START VALIDATION W DUMMY VAR
+valid_data_dum1<-read.csv("~/Github/Data-Management-Final-Project-Agbim/data/clean_data/valid_data_dum_v1.csv",na.strings = "NA",header=TRUE)
+#Skip making a v1 and make a v2 without pcnt_hisp
+lm_valid_dum2<-lm(formula=validation_data$lmi_burdenx100~.-X-fip-cnty-pcnt_hisp_chr-pcnt_income_chr,
+                     data=valid_data_dum1)
+summary(lm_valid_dum2)
+
+#Check VIF for analysis_dum2
+library(car)
+vif(lm_valid_dum2)
+
+#check for linearity
+?crPlots
+?ceresPlots
+crPlots(lm_valid_dum2)
+ceresPlots(lm_valid_dum2) #fail
+#check fo normality of residuals
+qqPlot(lm_valid_dum2,main="QQ Plot")
+
+?studres
+#check for heteroscedasticity(bad)
+?ncvTest
+ncvTest(lm_valid_dum2)
+
+#Checking Outliers
+leveragePlots(lm_valid_dum2) #high leverage points
+
+outlierTest(lm_valid_dum2)#p-value for extreme obs
+
+
