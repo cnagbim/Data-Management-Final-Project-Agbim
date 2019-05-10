@@ -257,7 +257,7 @@ levels(analysis_data$brdr_cnty)
 #There should be 32 variables categorized as border
 summary(analysis_data$brdr_cnty)
 
-write.csv(x=analysis_data,file = "analysis_data_dum_v1.csv")
+
 
 #now add brdr cnty variable to validation dataset
 validation_data$brdr_cnty<-ifelse(validation_data$cnty %in% brdr_cnty$brdr_cnty_name, 1,0)
@@ -271,4 +271,6 @@ validation_data$brdr_cnty<-as.factor(validation_data$brdr_cnty)
 levels(validation_data$brdr_cnty)
 summary(validation_data$brdr_cnty)
 
+#Export dummy var files
+write.csv(x=analysis_data,file = "analysis_data_dum_v1.csv")
 write.csv(x=validation_data,file = "valid_data_dum_v1.csv")
