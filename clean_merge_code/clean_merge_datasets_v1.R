@@ -85,7 +85,7 @@ chr<-read.csv("~/Github/Data-Management-Final-Project-Agbim/data/raw_data/county
 chr$pcnt_income_chr<-chr$Household.Income*(100/59195)
 
 #Rename ugly variables in chr
-chr_header<-c("fip","state","cnty","pcnt_food_insec_chr","pcnt_lw_access_chr","pcnt_uninsured_chr","income_chr","pcnt_own_chr","pcnt_sr_chr","pcnt_blk_chr","pcnt_hisp_chr","pcnt_rural_chr","pcnt_unemp_chr","food_rank_chr","pcnt_obese_chr","pcnt_income_chr")
+chr_header<-c("fip","state","cnty","pcnt_food_insec_chr","pcnt_lw_access_chr","pcnt_uninsured_chr","income_chr","pcnt_own_chr","pcnt_sr_chr","pcnt_blk_chr","pcnt_hisp_chr","pcnt_rural_chr","pcnt_unemp_chr","food_rank_chr","pcnt_obese_chr","pcnt_college_chr","pcnt_income_chr")
 names(chr)<-chr_header
 
 #Load bureau labor statistics
@@ -146,6 +146,7 @@ analysis_data<-data.frame("fip"=full_en_burden$County.GEOID,
                           "pcnt_blk_ucb"=race_ucb$pcnt_blk_ucb,
                           "pcnt_rural_chr"=chr$pcnt_rural_chr,
                           "pcnt_sr_ucb"=age_ucb$pcnt_sr_ucb,
+                          "pcnt_college_chr"=chr$pcnt_college_chr,
                           "pcnt_unemp_bls"=bls$pcnt_unemp_bls,
                           "pcnt_pov_usda"=usda$pcnt_pov_usda,
                           "pcnt_income_saipe"=pov_income_saipe$pcnt_income_saipe,
@@ -163,6 +164,7 @@ validation_data<-data.frame("fip"=full_en_burden$County.GEOID,
                             "pcnt_blk_chr"=chr$pcnt_blk_chr,
                             "pcnt_rural_chr"=chr$pcnt_rural_chr,
                             "pcnt_sr_chr"=chr$pcnt_sr_chr,
+                            "pcnt_college_chr"=chr$pcnt_college_chr,
                             "pcnt_unemp_chr"=chr$pcnt_unemp_chr,
                             "pcnt_pov_saipe"=pov_income_saipe$pcnt_pov_saipe,
                             "pcnt_income_chr"=chr$pcnt_income_chr,
@@ -265,6 +267,8 @@ view(validation_data)
 levels(validation_data$brdr_cnty)
 #change to a factor aka a categorical variable
 validation_data$brdr_cnty<-as.factor(validation_data$brdr_cnty)
+#check if brdr cnty is a categorical variables. "NULL" response means it's not
+levels(validation_data$brdr_cnty)
 summary(validation_data$brdr_cnty)
 
 write.csv(x=validation_data,file = "valid_data_dum_v1.csv")
