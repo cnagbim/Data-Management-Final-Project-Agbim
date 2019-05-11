@@ -61,7 +61,7 @@ validation_data1$pcnt_uninsured_chr<-as.numeric(validation_data1$pcnt_uninsured_
 str(validation_data1)
 #run again without pcnt_hisp
 
-lm_validation2<-lm(formula=validation_data$lmi_burdenx100~.-pcnt_income_chr-pcnt_hisp_chr-fip-cnty,data=validation_data1)
+lm_validation2<-lm(formula=validation_data$lmi_burdenx100~.-X-pcnt_income_chr-pcnt_hisp_chr-fip-cnty,data=validation_data1)
 
 summary(lm_validation2)
 vif(lm_validation2)
